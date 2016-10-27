@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+<style type="text/css">
+.knitr .inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.rimage .left {
+  text-align: left;
+}
+.rimage .right {
+  text-align: right;
+}
+.rimage .center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+    <meta charset="utf-8" />
+    <script src = "https://cdn.datacamp.com/datacamp-light-latest.min.js"></script>
+    <title> Aula 1 | Curso introdutório de R </title>
+  </head>
+  
+  <header>
+   
+  </header>
+  <body>
+    <p>
+  Essa frase não vai fazer muito sentido agora, mas é bom você já começar a tê-la em mente: no R, praticamente tudo o que existe na sua área de trabalho é um “objeto”. E praticamente tudo o que acontece na sua área de trabalho é resultado de uma função. 
+    </p>
+    <p>
+Nesta seção veremos um pouco sobre o objeto mais básico do R, o vetor, e como gerenciar sua érea de trabalho. Aprenderemos, basicamente, algumas formas de criar e remover um objeto (no caso um vetor), como verificar suas propriedades e alterar seus elementos. Ao final veremos como salvar e carregar sua área de trabalho e/ou objetos específicos.
+    </p>
+    
+    <h2>Criando objetos: assignment operators </h2>
+    
+    <p>Durante o uso do R, você irá criar e guardar objetos com um nome, por exemplo:</p>
+    
+    <p>O operador <code><-</code> é conhecido como "assignment operator" e, no caso acima, atribuiu o valor <code>10</code> a um objeto de nome <code>x1</code> (no caso, um vetor). Na maior parte das vezes, o operador <code>=</code> é equivalente a <code><-</code>. Vejamos:
+</p>
+
+    <div data-datacamp-exercise data-lang = "r" data-height = "auto">
+      <code data-type="sample-code">
+         # Atribua o valor 10 ao objeto x1 utilizando (<-)
+  
+  
+         # imprima x1
+         
+          
+         # Atribua o valor 20 ao objeto x2 utilizando (=)
+  
+  
+         # imprima x2        
+  
+  
+      </code>
+      <code data-type="solution">
+         # Atribua o valor 10 ao objeto x1 utilizando (<-)
+         x1 <- 10
+  
+         # imprima x1
+         x1
+          
+         # Atribua o valor 20 ao objeto x2 utilizando (=)
+         x2 = 20
+  
+         # imprima x2        
+         x2
+  
+      </code>
+      <code data-type="sct">
+          test_object("x1")
+          test_object("x2")
+          success_msg("Parabéns!")
+      </code>
+      <div data-type="hint">Você deve usar primeiro (<code><-</code>) e então (<code>=</code>) para criar as variáveis <code>x1</code> e <code>x2</code>.</div>
+    </div>
+    
+    <p>Neste livro recomendaremos o uso do <code><-<code> pois ele funciona <i> sempre</i>  como atribuição. O operador <code>=<code> é usado para definir argumentos dentro de um função e, assim, seu comportamento pode ser diferente de uma atribuição em certos casos (veremos isso mais a frente). Contudo, na maior parte das vezes o uso de <code>=<code> e <code><-<code> é indiferente, então desde que você seja consistente, escolha a forma que mais lhe agradar.
+</p>
+    
+    <p>Estudaremos funções mais a fundo em outra seção, mas, é importante desde já ter a idéia de que o assignment operator <code><-<code> nada mais é do que uma <i> função</i> . Para se chamar uma função utiliza-se seu nome seguido dos argumentos entre parênteses, isto é, <code>funcao(argumento1, argumento2, ...)<code>.
+</p>
+    
+    <p>Dessa forma, poderíamos ter chamado o operado <code><-<code> com a sintaxe de uma função (usando os backticks para auxiliar). Isto é, o comando:
+</p>
+    
+    
+    <div data-datacamp-exercise data-lang = "r" data-height = "auto">
+      <code data-type="sample-code">
+         # Atribua o valor 10 ao objeto x1 utilizando `<-` como função
+
+
+         # imprima x1
+
+          
+         # Atribua o valor 10 ao objeto x1 utilizando (<-)
+
+  
+         # imprima x1
+         
+  
+  
+      </code>
+      <code data-type="solution">
+         # Atribua o valor 10 ao objeto x1 utilizando `<-` como função
+         `<-`("x1", 10)
+  
+         # imprima x1
+         x1
+          
+         # Atribua o valor 10 ao objeto x1 utilizando (<-)
+         x1 <- 10
+  
+         # imprima x1
+         x1
+  
+      </code>
+      <code data-type="sct">
+          test_object("x1")
+          test_function("<-")
+          success_msg("Muito bem! Você percebeu que os valores de x1 são os mesmo em ambos os casos?")
+      </code>
+      <div data-type="hint">Você deve usar primeiro (<code>`<-`</code>) como função e então (<code><-</code>) como operador para criar a variável <code>x1</code>.</div>
+    </div>
+    
+
+  </body>
+</html>
